@@ -1,0 +1,26 @@
+{
+  "name": "jdw_music_academy",
+  "version": "1.0.0",
+  "description": "This is a fictional community music school that services the lower income neighborhoods of Los Angeles. JDW Music Academy provides free music education to students.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdwilkin4/JDW_Music_Academy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdwilkin4/JDW_Music_Academy/issues"
+  },
+  "homepage": "https://github.com/jdwilkin4/JDW_Music_Academy#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.13",
+    "nodemon": "^2.0.7"
+  }
+}
