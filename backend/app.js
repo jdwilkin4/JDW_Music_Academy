@@ -14,7 +14,7 @@ db.once('open', function () {
     console.log('DB connected')
 })
 
-app.use(landingPages);
+app.use('/jdwmusic', landingPages);
 
 
 app.listen(port, () => {
