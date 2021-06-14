@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const port = process.env.PORT || 8000
 const app = express()
+const landingPages = require('./routes/landingPages');
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -13,9 +14,8 @@ db.once('open', function () {
     console.log('DB connected')
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello world!')
-})
+app.use(landingPages);
+
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
