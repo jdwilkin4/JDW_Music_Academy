@@ -1,0 +1,1 @@
+exports.homePage = (req, res) => res.json({ message: 'Welcome to JDW Music Academy' })

@@ -1,0 +1,1 @@
+exports.musicClasses = (req, res) => res.json({ message: 'Check out our music classes' })

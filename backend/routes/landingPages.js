@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { homePage } = require('../controllers/homePage');
+const { aboutPage } = require('../controllers/aboutPage');
+const { musicClasses } = require('../controllers/musicClasses')
 
 //middleware specific to this router
 router.use(function timelog(req, res, next) {
@@ -8,18 +11,12 @@ router.use(function timelog(req, res, next) {
 })
 
 //route for the home page
-router.get('/', function (req, res) {
-    res.send('JDW Music Academy')
-})
+router.get('/', homePage)
 
 //route for the about page
-router.get('/about', function (req, res) {
-    res.send('About page JDW Music Academy')
-})
+router.get('/about', aboutPage)
 
 //route for the classes page
-router.get('/classes', function (req, res) {
-    res.send('Music classes')
-})
+router.get('/classes', musicClasses)
 
 module.exports = router
