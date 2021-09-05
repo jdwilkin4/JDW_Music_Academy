@@ -1,6 +1,9 @@
 require('dotenv').config()
-const express = require('express')
-const mongoose = require('mongoose')
+const express = require('express');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 8000
 const mongoUri = process.env.MONGO_URI
 const app = express()
@@ -15,7 +18,13 @@ db.once('open', function () {
     console.log('DB connected')
 })
 
-app.use('/jdwmusic', landingPages);
+//middleware routes
+app.use('/', landingPages);
+
+//middleware
+app.use(express.json());
+app.use(cors());
+app.use(morgan('dev'));
 
 
 app.listen(port, () => {

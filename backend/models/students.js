@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
+const uuidv1 = require('uuidv1');
 const { Schema } = mongoose
 
 const studentSchema = new Schema({
@@ -36,5 +37,28 @@ const studentSchema = new Schema({
         default: 0
     }
 })
+
+//virtual field
+studentSchema.virtual('password')
+    .set((password) => {
+        this._password = password
+        this.salt = uuidv1()
+        this.hashed_password = this.encryptPassword(password)
+    })
+    .get(() => {
+        return this._password
+    })
+studentSchema.methods = {
+    encryptPassword: (password) => {
+        if (!password) return '';
+        try {
+            crypto.createHmac('sha256', this.salt)
+                .update(password)
+                .digest('hex')
+        } catch (error) {
+            return ''
+        }
+    }
+}
 
 module.exports = mongoose.model('student', studentSchema)
