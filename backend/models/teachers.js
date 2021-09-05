@@ -1,49 +1,51 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const uuidv1 = require('uuidv1');
-const { Schema } = mongoose
+const { Schema } = mongoose;
 
-const studentSchema = new Schema({
+const teacherSchema = new Schema({
     name: {
         type: String,
-        trim: true,
         required: true,
+        trim: true,
         maxLength: 32
     },
     email: {
         type: String,
-        trim: true,
+        unique: true,
         required: true,
-        maxLength: 32,
-        unique: true
+        trim: true,
+        maxLength: 32
     },
     hashed_password: {
         type: String,
-        required: true,
+        required: true
     },
-    salt: String,
-    age: { type: Number },
-    grade: { type: Number },
     instrument: {
         type: String,
         required: true,
+        maxLength: 32,
+        trim: true
     },
     about_profile: {
         type: String,
+        maxLength: 250,
         trim: true
     },
+    salt: true,
     role: {
         type: Number,
-        default: 0
+        default: 1
     },
     history: {
         type: Array,
         default: []
     }
+
 }, { timestamps: true })
 
-//virtual field
-studentSchema.virtual('password')
+//virtual fields
+teacherSchema.virtual('password')
     .set(function (password) {
         this._password = password
         this.salt = uuidv1()
@@ -53,10 +55,9 @@ studentSchema.virtual('password')
         return this._password
     })
 
-
-studentSchema.methods = {
+teacherSchema.methods = {
     encryptPassword: (password) => {
-        if (!password) return '';
+        if (!password) return ''
         try {
             crypto.createHmac('sha256', this.salt)
                 .update(password)
@@ -66,5 +67,4 @@ studentSchema.methods = {
         }
     }
 }
-
-module.exports = mongoose.model('student', studentSchema)
+module.exports = mongoose.model('Teacher', teacherSchema)
