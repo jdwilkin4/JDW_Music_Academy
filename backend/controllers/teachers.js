@@ -1,0 +1,1 @@
+exports.teachers = (req, res) => res.json({ message: 'teacher login' });

@@ -1,1 +1,1 @@
-exports.aboutPage = (req, res) => res.json({ message: 'About page' })
+exports.aboutPage = (req, res) => res.json({ message: 'About page' });

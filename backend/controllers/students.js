@@ -1,0 +1,1 @@
+exports.students = (req, res) => res.json({ message: 'student login' });
