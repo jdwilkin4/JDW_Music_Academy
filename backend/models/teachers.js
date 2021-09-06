@@ -32,7 +32,7 @@ const teacherSchema = new Schema({
         maxLength: 250,
         trim: true
     },
-    salt: true,
+    salt: String,
     role: {
         type: Number,
         default: 1
