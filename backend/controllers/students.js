@@ -4,10 +4,8 @@ exports.students = (req, res) => {
     const student = new Student(req.body)
     console.log("req.body", req.body)
 
-    student.save((error, student) => {
-        if (error) {
-            return res.status(400).json({ error })
-        }
-        res.json({ student })
+    student.save((err, user) => {
+        if (err) return console.error(err, 'bad gateway')
+        res.json({ user })
     })
 }
